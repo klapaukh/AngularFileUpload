@@ -10,11 +10,16 @@ export class FileUploadComponent implements AfterContentInit {
     @ContentChild(PreviewComponent) child: PreviewComponent;
 
 
-    ngAfterContentInit(): void {
+    public ngAfterContentInit(): void {
         if (this.child === undefined) {
             console.error('Child is undefined!!!');
         }
         this.child.display = 'Cool Stuff!';
     }
 
+    public textChanged(value): void {
+        if (this.child !== undefined) {
+            this.child.display = value.target.value;
+        }
+    }
 }
