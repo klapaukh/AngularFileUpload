@@ -1,9 +1,14 @@
 <ng-content></ng-content>
-<div *ngIf="multiple">
-    <input type="file" (change)="textChanged($event)" multiple/>
+<div class='inputBox'>
+    <input *ngIf="multiple" type="file" (change)="textChanged($event)" #upload multiple/>
+    <input *ngIf="!multiple" type="file" (change)="textChanged($event)" #upload />
 </div>
-<div *ngIf="!multiple">
-    <input type="file" (change)="textChanged($event)" />
+<div (drop)="handleFileSelect($event)" (dragover)="handleDragOver($event)" class="dragTarget">
+    <span *ngIf="!multiple">
+        Drag file into here
+    </span>
+    <span *ngIf="multiple">
+        Drag files into here
+    </span>
 </div>
-
 <br />
