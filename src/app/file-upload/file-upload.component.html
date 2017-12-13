@@ -1,4 +1,9 @@
 <ng-content></ng-content>
-<br />
-<input type="text" (keyup)="textChanged($event)" />
+<div *ngIf="multiple">
+    <input type="file" (change)="textChanged($event)" multiple/>
+</div>
+<div *ngIf="!multiple">
+    <input type="file" (change)="textChanged($event)" />
+</div>
+
 <br />

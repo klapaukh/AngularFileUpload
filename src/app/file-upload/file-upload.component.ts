@@ -1,4 +1,4 @@
-import { Component, ContentChild, AfterContentInit } from '@angular/core';
+import { Component, ContentChild, AfterContentInit, Input } from '@angular/core';
 import { PreviewComponent } from '../preview/preview.component';
 
 @Component({
@@ -8,18 +8,27 @@ import { PreviewComponent } from '../preview/preview.component';
 })
 export class FileUploadComponent implements AfterContentInit {
     @ContentChild(PreviewComponent) child: PreviewComponent;
+    @Input() multiple: boolean;
 
+    constructor() {
+        this.multiple = false;
+    }
 
     public ngAfterContentInit(): void {
         if (this.child === undefined) {
             console.error('Child is undefined!!!');
         }
-        this.child.display = 'Cool Stuff!';
     }
 
     public textChanged(value): void {
-        if (this.child !== undefined) {
-            this.child.display = value.target.value;
+        if (this.child === undefined) {
+            return;
         }
+        const files: File[] = Array.from(value.target.files);
+        if (files.length === 1 ) {
+            this.child.display = files[0].name;
+            this.child.ngOnChanges(); // Dynamic changes don't trigger this method
+        }
+        // No else as you cannot preview multiple files.
     }
 }
