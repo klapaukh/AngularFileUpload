@@ -32,10 +32,9 @@ export class FileUploadComponent implements AfterContentInit {
 
     public setPreview() {
         if (this.child !== undefined && this.files.length === 1) {
-            this.child.display = this.files[0].name;
-            this.child.ngOnChanges(); // Dynamic changes don't trigger this method
+            this.child.changeDisplay(this.files[0]);
         }
-        // No else as you cannot preview multiple files.
+        // No else as you cannot preview 0 / multiple files.
     }
 
     public handleFileSelect(evt: DragEvent) {
