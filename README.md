@@ -1,6 +1,8 @@
 # FileUpload
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
+This project is a test bed to develop the basic functionality for a file upload component
+that can preview the file. It incorporates a (limited) Gmesh parser for Three.js for the
+previewing. 
 
 ## Development server
 
