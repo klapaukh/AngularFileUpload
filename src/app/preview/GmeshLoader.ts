@@ -122,7 +122,6 @@ export class GmeshLoader {
         const loader: FileReader = new FileReader();
 
         loader.onload = (function (event: Event) {
-            console.log(event);
             onLoad(self.parse((event.target as any).result));
         });
         loader.onprogress = onProgress;

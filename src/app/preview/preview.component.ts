@@ -72,10 +72,8 @@ export class PreviewComponent implements OnInit {
 
     public render(): void {
         if (this.renderer === undefined) {
-            console.log('No renderer!');
             return;
         }
-        console.log('Rendering');
         this.renderer.render(this.scene, this.camera);
     }
 
@@ -100,14 +98,11 @@ export class PreviewComponent implements OnInit {
         const loader = new GmeshLoader();
         const self = this;
         loader.load(this.display, function (geometry) {
-            console.log('Adding mesh to scene');
-            // geometry.center();
+            geometry.center();
+            // Should this normalise the size as well?
             const material = new MeshPhongMaterial({ color: 0x0000ff, side: FrontSide });
             self.mesh = new Mesh(geometry, material);
             self.scene.add(self.mesh);
-            console.log(material);
-            console.log(geometry);
-            console.log(self.mesh);
             self.render();
         });
     }
