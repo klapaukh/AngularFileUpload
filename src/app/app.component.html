@@ -3,7 +3,7 @@
   Welcome to the file upload with preview test bed
 </div>
 <div style="width:30%">
-  <app-file-upload>
+  <app-file-upload (fileSelected)="handleFiles($event)">
     <app-preview></app-preview>
   </app-file-upload>
 </div>

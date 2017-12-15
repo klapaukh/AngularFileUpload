@@ -1,4 +1,8 @@
-import { Component, ContentChild, AfterContentInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+    Component, ContentChild, AfterContentInit, Input, ViewChild, 
+    ElementRef, Output, EventEmitter
+} from '@angular/core';
+
 import { PreviewComponent } from '../preview/preview.component';
 
 @Component({
@@ -10,6 +14,8 @@ export class FileUploadComponent implements AfterContentInit {
     @ContentChild(PreviewComponent) child: PreviewComponent;
     @ViewChild('upload') input: ElementRef;
     @Input() multiple: boolean;
+
+    @Output() fileSelected: EventEmitter<FileList> = new EventEmitter();
 
     private files: FileList;
 
@@ -34,6 +40,7 @@ export class FileUploadComponent implements AfterContentInit {
         if (this.child !== undefined && this.files.length === 1) {
             this.child.changeDisplay(this.files[0]);
         }
+        this.fileSelected.emit(this.files);
         // No else as you cannot preview 0 / multiple files.
     }
 
