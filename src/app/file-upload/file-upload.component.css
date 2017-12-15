@@ -2,8 +2,7 @@
     border-width: 2px;
     border-color: darkslategrey;
     border-style: dashed;
-    width: fit-content;
-    padding: 1ex 3em;
+    padding: 4ex 3em;
 }
 
 .inputBox {
